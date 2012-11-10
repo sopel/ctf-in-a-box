@@ -21,7 +21,9 @@ app.logger.addHandler(logging.StreamHandler(sys.stderr))
 
 
 if not os.path.exists(settings.entropy_file):
-    print 'Entropy file not found. Have you run initialize_db.py?'
+    from initialize_db import main as create_entropy
+    print 'Entropy file not found - creating a new one ...'
+    create_entropy('dummy_password')
 
 # use persistent entropy file for secret_key
 app.secret_key = open(settings.entropy_file, 'r').read()
@@ -231,6 +233,9 @@ def order():
     # all OK -- process the order
     log_api_request(params['user_id'], '/orders', body)
     return process_order(params)
+
+# Enable automatic pick up by Cloud Foundry WSGI environment
+application = app
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=9233)

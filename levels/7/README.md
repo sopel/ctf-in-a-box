@@ -20,7 +20,7 @@ in the request body.
 ## The Code
 
 You can use `client.py` to talk to the API, specifying an appropriate API
-endpoint, user id, and secret key. The app itself is `wafflecopter.py`, which
+endpoint, user id, and secret key. The app itself is `wsgi.py`, which
 will use a SQLite database created by `initialize_db.py`. To edit flask
 settings, just create a `local_settings.py` file. The page templates can be
 found under `templates/`.
