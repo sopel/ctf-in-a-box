@@ -99,6 +99,9 @@ def login():
     flask.session['user_id'] = user_id
     return flask.redirect(absolute_url('/'))
 
+# Enable automatic pick up by Cloud Foundry WSGI environment
+application = app
+
 if __name__ == '__main__':
     # In development: app.run(debug=True)
     app.run()
