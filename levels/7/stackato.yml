@@ -1,0 +1,5 @@
+name: ctf-level-7
+instances: 1
+framework:
+  type: python
+mem: 128
