@@ -1,6 +1,9 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    daemons (1.1.9)
+    eventmachine (1.0.0)
+    eventmachine (1.0.0-x86-mingw32)
     json (1.7.4)
     rack (1.4.1)
     rack-protection (1.2.0)
@@ -13,10 +16,16 @@ GEM
       rack-protection (~> 1.2)
       tilt (~> 1.3, >= 1.3.3)
     sqlite3 (1.3.6)
+    sqlite3 (1.3.6-x86-mingw32)
+    thin (1.5.0)
+      daemons (>= 1.0.9)
+      eventmachine (>= 0.12.6)
+      rack (>= 1.0.0)
     tilt (1.3.3)
 
 PLATFORMS
   ruby
+  x86-mingw32
 
 DEPENDENCIES
   json
@@ -25,3 +34,4 @@ DEPENDENCIES
   sequel
   sinatra
   sqlite3
+  thin

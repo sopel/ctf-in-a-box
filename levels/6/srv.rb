@@ -79,6 +79,12 @@ machine, for example, can only talk directly to the Streamer server itself!",
     set :environment, :production
     enable :sessions
 
+    # Configure for Cloud Foundry environment, if applicable
+    configure do
+      set(:bind, ENV['VCAP_APP_HOST'] || '0.0.0.0')
+      set(:port, ENV['VCAP_APP_PORT'] || 4567)	
+    end
+
     # Use persistent entropy file
     entropy_file = 'entropy.dat'
     unless File.exists?(entropy_file)
