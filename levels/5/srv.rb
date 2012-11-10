@@ -15,6 +15,12 @@ module DomainAuthenticator
   class DomainAuthenticatorSrv < Sinatra::Base
     set :environment, :production
 
+    # Configure for Cloud Foundry environment, if applicable
+    configure do
+      set(:bind, ENV['VCAP_APP_HOST'] || '0.0.0.0')
+      set(:port, ENV['VCAP_APP_PORT'] || 4567)
+    end
+
     # Run with the production file on the server
     if File.exists?('production')
       PASSWORD_HOSTS = /^level05-\d+\.stripe-ctf\.com$/
