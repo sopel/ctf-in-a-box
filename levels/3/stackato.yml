@@ -1,5 +1,0 @@
-name: ctf-level-3
-instances: 1
-framework:
-  type: python
-mem: 128
