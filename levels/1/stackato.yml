@@ -1,5 +1,0 @@
-name: ctf-level-1
-instances: 1
-framework:
-  type: php
-mem: 128
