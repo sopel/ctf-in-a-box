@@ -1,0 +1,13 @@
+---
+applications:
+  .:
+    name: ctf-level-5
+    framework:
+      name: sinatra
+      info:
+        mem: 128M
+        description: Sinatra Application
+        exec: ruby srv.rb
+    url: ${name}-${random-word}.${target-base}
+    mem: 128M
+    instances: 1

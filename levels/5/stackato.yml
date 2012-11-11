@@ -1,5 +1,0 @@
-name: ctf-level-5
-instances: 1
-framework:
-  type: sinatra
-mem: 128
