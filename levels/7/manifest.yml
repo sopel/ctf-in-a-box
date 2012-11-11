@@ -1,0 +1,13 @@
+---
+applications:
+  .:
+    name: ctf-level-7
+    framework:
+      name: python
+      info:
+        mem: 64M
+        description: Python WSGI Application
+        exec: 
+    url: ${name}-${random-word}.${target-base}
+    mem: 64M
+    instances: 1
