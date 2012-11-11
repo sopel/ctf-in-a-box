@@ -1,5 +1,0 @@
-name: ctf-level-0
-instances: 1
-framework:
-  type: node
-mem: 128
