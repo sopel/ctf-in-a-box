@@ -1,0 +1,13 @@
+---
+applications:
+  .:
+    name: ctf-level-0
+    framework:
+      name: node
+      info:
+        mem: 64M
+        description: Node.js Application
+        exec: 
+    url: ${name}-${random-word}.${target-base}
+    mem: 64M
+    instances: 1

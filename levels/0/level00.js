@@ -1,6 +1,10 @@
 // Install dependencies with 'npm install'
 // Run as 'node level00.js'
 
+// Configure for Cloud Foundry environment, if applicable
+var host = process.env.VCAP_APP_HOST || "localhost";
+var port = process.env.PORT || 3000;
+
 var express = require('express'), // Web framework
     mu = require('mu2'),          // Mustache.js templating
     sqlite3 = require('sqlite3'); // SQLite (database) driver
@@ -56,11 +60,5 @@ app.post('/*', function(req, res) {
 	 });
 });
 
-if (process.argv.length > 2) {
-  var socket = process.argv[2];
-  console.log("Starting server on UNIX socket " + socket);
-  app.listen(socket);
-} else {
-  console.log("Starting server at http://localhost:3000/");
-  app.listen(3000);
-}
+console.log("Starting server at http://" + host + ":" + port + "/");
+app.listen(port, host);
