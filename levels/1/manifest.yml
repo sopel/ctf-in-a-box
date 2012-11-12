@@ -1,0 +1,13 @@
+---
+applications:
+  .:
+    name: ctf-level-1
+    framework:
+      name: php
+      info:
+        mem: 128M
+        description: PHP Application
+        exec: 
+    url: ${name}-${random-word}.${target-base}
+    mem: 128M
+    instances: 1
