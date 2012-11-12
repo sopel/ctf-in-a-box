@@ -16,8 +16,8 @@
         if ($attempt === $combination) {
           echo "<p>How did you know the secret combination was" .
                " $combination!?</p>";
-          $next = file_get_contents('level02-password.txt');
-          echo "<p>You've earned the password to the access Level 2:" .
+          $next = file_get_contents('password.txt');
+          echo "<p>You've earned the password to the next Level:" .
                " $next</p>";
         } else {
           echo "<p>Incorrect! The secret combination is not $attempt</p>";
