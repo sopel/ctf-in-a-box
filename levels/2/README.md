@@ -5,7 +5,25 @@ Social Networks are all the rage these days, so we decided to build
 one for CTF. Please fill out your profile at on the level 2 server.
 You may even be able to find the password for Level 3 by doing so.
 
-# To run
+## Run on Cloud Foundry
 
-- Put index.php on a server somewhere with password.txt file in the
-  same directory, chmodded unreadable.
+- Run `vmc push` from this directory to install the app
+- Seed the secret ([see below](#seed-secret))
+- Go to the app's reported URL in your browser
+
+## Run standalone
+
+N/A yet (PHP versions < 5.4 lack a convenient build in webserver)
+
+## Seed secret
+
+Depending on the usage scenario you'll most likely want to seed the secret to be 
+discovered via the exploit - run one of the following commands for a sample secret:
+
+* via [HTTPie](https://github.com/jkbr/httpie)
+ - ~~`cat sample-secret.json | http POST <URL>/seed.php`~~ (JSON payload N/A yet)  
+or
+ - `http -f POST <URL>/seed.php password=sample-password`
+
+* via [cURL](http://curl.haxx.se/)
+ - `curl <URL>/seed.php -d password=sample-password`
