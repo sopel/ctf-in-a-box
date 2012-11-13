@@ -3,27 +3,70 @@
   define('FILENAME_SECRET', 'secret-combination.txt');
   define('FILENAME_PASSWORD', 'password.txt');
 
-  $message = NULL;
-  if (!file_exists(FILENAME_PASSWORD)) {
+  function seedLevel($password) {
+    file_put_contents(FILENAME_PASSWORD, $password);
+    chmod(FILENAME_PASSWORD, MODE);
+    // Also ensure random secret
     file_put_contents(FILENAME_SECRET, crypt(rand()));
     chmod(FILENAME_SECRET, MODE);
+  }
 
-    if (!empty($_POST['password'])) {
+  function trySeedLevel(&$message) {
+    $success = FALSE;
+    $password = NULL;
+    // NOTE: Lazy evaluation/validation - we accept a 'normal' form submission as well as a JSON POST,
+    // disregarding the provided content type.
+    // Try JSON first
+    $decodedJson = json_decode(file_get_contents('php://input'), TRUE);
+    if (is_array($decodedJson) && isset($decodedJson['password'])) {
+      $password = $decodedJson['password'];
+    }
+    // Alternatively, check for 'normal' form post
+    elseif (!empty($_POST['password'])) {
       $password = $_POST['password'];
-      file_put_contents(FILENAME_PASSWORD, $password);
-      chmod(FILENAME_PASSWORD, MODE);
+    }
+
+    // Did we find a password?
+    if (!empty($password)) {
+      // Yes, use for seeding
+      seedLevel($password);
       $message = 'Seeded password.txt with: ' . $password;
-    } else {
+      $success = TRUE;
+    }
+    else {
       header("HTTP/1.1 400 Bad Request");
       $message = 'You must specify a non empty password!';
     }
+
+    return $success;
   }
-  else {
+
+  $message = NULL;
+  $showForm = FALSE;
+  // Seeding can only happen once
+  if (file_exists(FILENAME_PASSWORD)) {
     header("HTTP/1.1 409 Conflict");
     $message = 'Guessing Game has already been seeded, please redeploy!';
   }
+  else {
+    // We only accept GET or POST
+    switch ($_SERVER['REQUEST_METHOD']) {
+      case 'GET':
+        $message = 'Seed the password to the next level below (secret combination is randomized)!';
+        $showForm = TRUE;
+        break;
+      case 'POST':
+        $success = trySeedLevel($message);
+        if (!$success) {
+          $showForm = TRUE;
+        }
+        break;
+      default:
+        header("HTTP/1.1 405 Method Not Allowed");
+        $message = 'You can only use GET or POST for seeding!';
+    }
+  }
 ?>
-
 <html>
   <head>
     <title>Guessing Game Administration</title>
@@ -31,14 +74,13 @@
   <body>
     <h1>Guessing Game Administration!</h1>
     <p>
-      Seed the password to the next level below (secret combination is randomized)!
-    </p>
-    <p>
       <?php echo $message; ?>
     </p>
-    <form action="#" method="POST">
-      <p><input type="text" name="password"></p>
-      <p><input type="submit" value="Seed!"></p>
-    </form>
+    <?php if ($showForm): ?>
+      <form action="#" method="POST">
+        <p><input type="text" name="password"></p>
+        <p><input type="submit" value="Seed!"></p>
+      </form>
+    <?php endif; ?>
   </body>
 </html>
