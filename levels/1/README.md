@@ -24,7 +24,7 @@ Depending on the usage scenario you'll most likely want to seed the secret to be
 discovered via the exploit - run one of the following commands for a sample secret:
 
 * via [HTTPie](https://github.com/jkbr/httpie)
- - ~~`cat sample-secret.json | http POST <URL>/seed.php`~~ (JSON payload not implemented yet, see [issue #25](https://github.com/sopel/ctf-in-a-box/issues/25))  
+ - `cat sample-secret.json | http POST <URL>/seed.php`
 or
  - `http -f POST <URL>/seed.php password=sample-password`
 
