@@ -27,7 +27,7 @@ discovered via the exploit - run one of the following commands for a sample secr
 * via [HTTPie](https://github.com/jkbr/httpie)
  - `cat sample-secret.json | http POST <URL>`  
 or
- - `http POST <URL> namespace=secret-namespace secret_name=levelXYZ.password secret_value=dummy-password`
+ - `http POST <URL> namespace=secret-namespace secret_name=levelXYZ.password secret_value=sample-password`
 
 * via [cURL](http://curl.haxx.se/)
- - `curl <URL> -d namespace=secret-namespace -d secret_name=levelXYZ.password -d secret_value=dummy-password`
+ - `curl <URL> -d namespace=secret-namespace -d secret_name=levelXYZ.password -d secret_value=sample-password`
