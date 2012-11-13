@@ -45,7 +45,7 @@
         </form>
 
         <p>
-           Password for Level 3 (accessible only to members of the club):
+           Password for next level (accessible only to members of the club):
            <a href="password.txt">password.txt</a>
         </p>
       </div>
