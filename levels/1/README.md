@@ -16,7 +16,7 @@ just have to try all the possible combinations. Or will you...?
 
 ## Run standalone
 
-Not implemented/tested yet, see #24.
+Not implemented/tested yet, see [issue #24](https://github.com/sopel/ctf-in-a-box/issues/24).
 
 ## Seed secret
 
@@ -24,7 +24,7 @@ Depending on the usage scenario you'll most likely want to seed the secret to be
 discovered via the exploit - run one of the following commands for a sample secret:
 
 * via [HTTPie](https://github.com/jkbr/httpie)
- - ~~`cat sample-secret.json | http POST <URL>/seed.php`~~ (JSON payload not implemented yet, see #25)  
+ - ~~`cat sample-secret.json | http POST <URL>/seed.php`~~ (JSON payload not implemented yet, see [issue #25](https://github.com/sopel/ctf-in-a-box/issues/25))  
 or
  - `http -f POST <URL>/seed.php password=sample-password`
 
